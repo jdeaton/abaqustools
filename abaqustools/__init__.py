@@ -19,3 +19,18 @@ def get_frequencies(odb_name, stepname):
         frequencies = [row[0] for row in csv.reader(csv_file)]
 
     return frequencies
+
+
+def write_keyword_input_file(new_file, template_file, variables):
+    """
+    """
+    with open(template_file, "r") as template:
+        with open(new_file, "w") as input_file:
+            for line in template:
+                for var_name in variables.keys():
+                    line = line.replace(var_name, repr(variables[var_name]))
+                input_file.write(line)
+              
+def run_abaqus(input_file):
+    to_shell = "abaqus job=" + input_file + " interactive ask_delete=OFF"
+    subprocess.call(to_shell, shell=True)
