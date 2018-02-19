@@ -27,7 +27,7 @@ def main(argv):
 
     frequencies = get_frequencies(abaqus_frequency_step)
 
-    write_csv(frequencies, out_file)
+    write_csv(out_file, frequencies)
 
 
 def process_command_line_input(argv):
@@ -36,7 +36,7 @@ def process_command_line_input(argv):
     odb_file = argv[1]
     step_key = argv[2]
 
-    if len(argv > 3):
+    if len(argv) > 3:
         out_file = argv[3]
     else:
         out_file = "frequency.csv"
@@ -47,13 +47,12 @@ def process_command_line_input(argv):
 def get_frequencies(frequency_step):
     frequencies = []
     for frame in frequency_step.frames:
-        frequencies.append(frame.frequency)
+        frequencies.append([frame.frequency])
     return frequencies
 
 
 def write_csv(out_file, frequencies):
-    with open(out_file, "w") as csv_file:
-        for freq in frequencies:
+    with open(out_file, "wb") as csv_file:
             csv.writer(csv_file, dialect='excel').writerows(frequencies)
 
 
