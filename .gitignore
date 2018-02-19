@@ -1,0 +1,11 @@
+$ Copyright (c) 2018 Joshua Deaton. All Rights Reserved.
+
+# PyCharm IDE.
+.idea/
+
+# Python Files.
+*.pyc
+
+# Abaqus Files.
+*.cae
+*.odb
