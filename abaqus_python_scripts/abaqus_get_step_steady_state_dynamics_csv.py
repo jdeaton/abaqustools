@@ -25,8 +25,8 @@ def main(argv):
 
     abaqus_odb = openOdb(odb_file)
     abaqus_ss_dynamics_step = abaqus_odb.steps[step_key]
-    abaqus_history_region = abaqus_ss_dynamics_step[hist_reg]
-    history_data = abaqus_history_region.historyOutput[var_name].data
+    abaqus_history_region = abaqus_ss_dynamics_step.historyRegions[hist_reg]
+    history_data = abaqus_history_region.historyOutputs[var_name].data
 
     write_csv(out_file, history_data)
 
